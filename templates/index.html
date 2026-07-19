@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tính Điểm Trung Bình - HCMUT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="page">
+
+  <div class="card">
+    <div class="header">
+      <h1>Bảng Điểm Trung Bình - HCMUT</h1>
+      <div class="subtitle">Tính GPA · Xếp loại học lực · Gợi ý học cải thiện</div>
+    </div>
+
+    <!-- ======================= SECTION 1: NHẬP DỮ LIỆU ======================= -->
+    <section id="section-input">
+      <p class="hint">
+        Dán dữ liệu từ bảng điểm MyBK vào đây...<br>
+        <b>NOTE:</b><br>
+        B1: Copy từ "Mã Môn Học" đến hết dữ liệu cuối cùng của cột "Tín Chỉ"<br>
+        B2: Bấm "Xử lý dữ liệu" để tự động tách tên môn, điểm, số tín chỉ
+      </p>
+      <textarea id="raw-input" placeholder="Dán dữ liệu bảng điểm thô từ LMS/MyBK vào đây..."></textarea>
+      <div id="parse-error" class="error-box hidden"></div>
+      <button id="btn-parse" class="btn btn-purple">Xử lý dữ liệu</button>
+    </section>
+
+    <!-- ======================= SECTION 2: BẢNG CHỈNH SỬA ======================= -->
+    <section id="section-edit" class="hidden">
+      <div id="merge-notice" class="merge-notice hidden"></div>
+      <table class="grade-table" id="edit-table">
+        <thead>
+          <tr>
+            <th style="width:6%">STT</th>
+            <th>Tên Môn Học</th>
+            <th style="width:16%">Điểm (0-10)</th>
+            <th style="width:14%">Số Tín Chỉ</th>
+            <th style="width:8%">Xóa</th>
+          </tr>
+        </thead>
+        <tbody id="edit-table-body"></tbody>
+      </table>
+
+      <div class="actions-row">
+        <button id="btn-add-row" class="btn btn-green">Thêm Môn Học</button>
+        <button id="btn-calc" class="btn btn-red">Tính Toán</button>
+        <button id="btn-back-to-input" class="btn btn-outline">Quay lại</button>
+      </div>
+    </section>
+
+    <!-- ======================= SECTION 3: KẾT QUẢ ======================= -->
+    <section id="section-result" class="hidden">
+      <table class="grade-table result-table">
+        <thead>
+          <tr>
+            <th>Tên Môn Học</th>
+            <th>Điểm (Hệ 10)</th>
+            <th>Số Tín Chỉ</th>
+            <th>Điểm Chữ</th>
+            <th>Điểm Hệ 4</th>
+          </tr>
+        </thead>
+        <tbody id="result-table-body"></tbody>
+      </table>
+
+      <div class="summary-box">
+        <p>Tổng Số Tín Chỉ: <b id="sum-tinchi">0</b></p>
+        <p>Điểm Trung Bình (Hệ 10): <b id="sum-gpa10">0</b></p>
+        <p>GPA: <b id="sum-gpa4">0</b></p>
+        <p>Xếp Loại Sinh Viên: <b id="sum-xeploai">-</b></p>
+      </div>
+
+      <a href="#" id="link-quaylai" class="link-back">Quay lại</a>
+    </section>
+  </div>
+
+  <button id="btn-open-improve" class="btn btn-lightblue floating-btn hidden">Tính Toán Nâng Cao</button>
+</div>
+
+<!-- ======================= MODAL: TÍNH TOÁN NÂNG CAO ======================= -->
+<div id="improve-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="modal-title-bar">Số Điểm Cần Phải Cải Thiện</div>
+
+    <table class="improve-summary-table">
+      <thead>
+        <tr>
+          <th>Xếp Loại</th>
+          <th>Mục Tiêu GPA</th>
+          <th>Trạng Thái</th>
+          <th>GPA Dự Kiến</th>
+          <th>Số Môn</th>
+          <th>Tổng Tín Chỉ</th>
+        </tr>
+      </thead>
+      <tbody id="improve-summary-body"></tbody>
+    </table>
+
+    <div id="improve-details"></div>
+
+    <p class="cost-note">*Chi phí ước tính mỗi tín chỉ học cải thiện là khoảng 880.000 VNĐ.</p>
+
+    <div class="modal-actions">
+      <button id="btn-toi-thieu" class="btn btn-green">Tính Tối Thiểu</button>
+      <button id="btn-toi-da" class="btn btn-blue">Tính Cải Thiện</button>
+      <button id="btn-close-modal" class="btn btn-red">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">Contact</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
