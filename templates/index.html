@@ -34,6 +34,7 @@
 
     <!-- ======================= SECTION 2: BẢNG CHỈNH SỬA ======================= -->
     <section id="section-edit" class="hidden">
+      <div id="restore-notice" class="restore-notice hidden"></div>
       <div id="merge-notice" class="merge-notice hidden"></div>
       <table class="grade-table" id="edit-table">
         <thead>
@@ -52,6 +53,7 @@
         <button id="btn-add-row" class="btn btn-green">Thêm Môn Học</button>
         <button id="btn-calc" class="btn btn-red">Tính Toán</button>
         <button id="btn-back-to-input" class="btn btn-outline">Quay lại</button>
+        <button id="btn-new-data" class="btn btn-outline-red">Nhập Bảng Điểm Mới</button>
       </div>
     </section>
 
@@ -120,3 +122,6 @@
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
+
+
+

@@ -165,6 +165,24 @@ textarea#raw-input:focus {
 }
 .merge-notice li { margin-bottom: 3px; }
 
+/* Thông báo đã khôi phục dữ liệu từ localStorage của lần trước */
+.restore-notice {
+  background: #eaf3ff;
+  border: 1px solid #bcdcfb;
+  color: #145591;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.restore-notice .restore-notice-text { flex: 1; min-width: 200px; }
+
 /* ---------- Buttons ---------- */
 .btn {
   border: none;
@@ -194,6 +212,13 @@ textarea#raw-input:focus {
   box-shadow: none;
 }
 .btn-outline:hover { background: rgba(24, 87, 201, 0.06); }
+.btn-outline-red {
+  background: transparent;
+  color: var(--red-500);
+  border: 1.5px solid var(--red-500);
+  box-shadow: none;
+}
+.btn-outline-red:hover { background: rgba(236, 75, 75, 0.08); }
 
 .actions-row {
   display: flex;
